@@ -1,0 +1,49 @@
+# Application Configuration Example
+# Copy this file to settings.yaml and configure your values
+
+app:
+  name: "Account Risk System"
+  version: "1.0.0"
+  debug: false
+
+database:
+  host: "localhost"
+  port: 5432
+  user: "postgres"
+  password: "your_password"
+  name: "account_risk"
+
+redis:
+  host: "localhost"
+  port: 6379
+  password: ""
+  db: 0
+
+kafka:
+  bootstrap_servers: "localhost:9092"
+  topics:
+    login_events: "login_events"
+    operation_events: "operation_events"
+
+jwt:
+  secret_key: "your-secret-key-change-in-production"
+  algorithm: "HS256"
+  access_token_expire_minutes: 1440  # 24 hours
+  refresh_token_expire_days: 7
+
+risk:
+  thresholds:
+    low: 30
+    medium: 60
+    high: 80
+
+notifications:
+  sms:
+    provider: "aliyun"
+    template_id: "your_template_id"
+  email:
+    provider: "sendgrid"
+    api_key: "your_sendgrid_api_key"
+  push:
+    provider: "jpush"
+    app_key: "your_jpush_app_key"
