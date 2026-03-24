@@ -1,0 +1,28 @@
+{
+  "$schema": "https://opencode.ai/schemas/project_hooks.json",
+  "description": "Project hooks for Account Risk Early Warning System",
+  "hooks": {
+    "post-write": [
+      {
+        "match": "**/*.py",
+        "command": "black {file}"
+      }
+    ],
+    "pre-commit": [
+      {
+        "match": "tests/**/*.py",
+        "command": "pytest {file} -v --tb=short"
+      },
+      {
+        "match": "app/**/*.py",
+        "command": "python -m py_compile {file}"
+      }
+    ],
+    "post-commit": [
+      {
+        "match": "**/*.py",
+        "command": "ruff check {file} --select=E,F,W --ignore=E501"
+      }
+    ]
+  }
+}
